@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NeuroBotics AI - Advanced AI agents, automation bots, and consulting services for businesses.">
+    <title>NeuroBotics AI - AI That Works While You Sleep</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a2a6c 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .background-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: glow 10s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        header {
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #00aaff;
+            letter-spacing: 1px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #00aaff;
+            border-bottom: 2px solid #00aaff;
+        }
+
+        .ai-robot-header {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 100px;
+            z-index: 1001;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 50%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #b0b0b0;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(90deg, #7f00ff, #00bfff);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 170, 255, 0.5);
+        }
+
+        .hero-robot {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 450px;
+        }
+
+        .stats, .services, .use-cases, .testimonials, .contact {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 60px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: #00aaff;
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 170, 255, 0.3);
+        }
+
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #b0b0b0;
+            font-size: 1rem;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .image-card:hover {
+            transform: scale(1.03);
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .image-card h3 {
+            margin-top: 15px;
+            font-size: 1.3rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            color: #b0b0b0;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card h4 {
+            font-size: 1.2rem;
+            color: #00aaff;
+        }
+
+        .contact form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact input,
+        .contact textarea {
+            padding: 15px;
+            border: 1px solid #374151;
+            border-radius: 5px;
+            background: #111827;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .contact button {
+            background: linear-gradient(90deg, #7f00ff, #00bfff);
+            border: none;
+            padding: 15px;
+            border-radius: 50px;
+            color: #fff;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .contact button:hover {
+            transform: translateY(-3px);
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.8);
+            background: linear-gradient(135deg, #111827, #1a2a6c);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 2000;
+            max-width: 500px;
+            width: 90%;
+            animation: popupFadeIn 0.5s ease-in-out forwards;
+        }
+
+        .popup.active {
+            display: block;
+        }
+
+        .popup .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .popup .close-btn:hover {
+            transform: rotate(90deg);
+        }
+
+        .popup h3 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .popup input,
+        .popup textarea {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #374151;
+            border-radius: 5px;
+            background: #111827;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .popup button {
+            background: linear-gradient(90deg, #7f00ff, #00bfff);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .popup button:hover {
+            transform: translateY(-3px);
+        }
+
+        .chatbot-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(90deg, #7f00ff, #00bfff);
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s;
+        }
+
+        .chatbot-widget:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 120px;
+            background: #fff;
+            color: #000;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(360deg);
+        }
+
+        footer {
+            background: #111827;
+            padding: 60px 0;
+            color: #b0b0b0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: #00aaff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #374151;
+        }
+
+        body.light-mode {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #000;
+        }
+
+        body.light-mode .service-card,
+        body.light-mode .image-card,
+        body.light-mode .testimonial-card {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        body.light-mode .popup {
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+        }
+
+        body.light-mode .popup input,
+        body.light-mode .popup textarea {
+            background: #fff;
+            color: #000;
+            border: 1px solid #d1d5db;
+        }
+
+        body.light-mode .popup h3 {
+            color: #000;
+        }
+
+        body.light-mode footer {
+            background: #e5e7eb;
+            color: #333;
+        }
+
+        body.light-mode .footer-column ul li a {
+            color: #333;
+        }
+
+        body.light-mode .footer-column ul li a:hover {
+            color: #0077cc;
+        }
+
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 80px 20px;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-robot {
+                width: 200px;
+                right: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ai-robot-header {
+                width: 60px;
+            }
+
+            .theme-toggle {
+                right: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <header>
+        <nav class="container">
+            <div class="logo">NeuroBotics AI</div>
+            <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="theme-toggle">🌙</div>
+            
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>AI That Works While You Sleep</h1>
+                <p>Custom AI agents, bots, and automation for founders, creators, and businesses. Unlock efficiency and innovation with NeuroBotics AI.</p>
+                <a href="#contact" class="cta-button">Get a Free Demo</a>
+            </div>
+            <lottie-player class="hero-robot" src="https://assets10.lottiefiles.com/packages/lf20_jtbfgzia.json" background="transparent" speed="1" loop autoplay></lottie-player>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 class="counter" data-target="100">0</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="120">0</h3>
+                    <p>AI Solutions Delivered</p>
+                </div>
+                <div class="stat-item">
+                    <h3 class="counter" data-target="50">0</h3>
+                    <p>Industries Served</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">🤖</div>
+                    <h3>Custom AI Agents</h3>
+                    <p>Develop tailored AI agents to handle customer support, lead generation, and task automation, customized to your business needs.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">⚙️</div>
+                    <h3>Business Automation Bots</h3>
+                    <p>Streamline repetitive tasks with intelligent bots that optimize workflows and boost productivity across your operations.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">💬</div>
+                    <h3>AI Chatbot Development</h3>
+                    <p>Build conversational AI chatbots for websites, WhatsApp, or Slack, trained on your data for seamless customer engagement.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🔌</div>
+                    <h3>AI Integration & Consulting</h3>
+                    <p>Integrate AI seamlessly into your CRM, ERP, or internal tools with expert consulting to maximize efficiency.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🚀</div>
+                    <h3>Content & Workflow Automation</h3>
+                    <p>Automate content creation, email campaigns, and data pipelines to save time and scale your business effortlessly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="use-cases" class="use-cases">
+        <div class="container">
+            <h2 class="section-title">Use Case Examples</h2>
+            <div class="image-grid">
+                <div class="image-card">
+                    <img src="https://pixabay.com/get/g63e92214e7b6b3f6436fcc9520e0cb7a3b6497815379d97f49020db190ef34f5d7f3afe1f40475f9573199ce1d1e924e63b2106a512ba5d243eba412653cf8b0_1280.jpg" alt="Enterprise AI Automation">
+                    <h3>Enterprise AI Customer Service</h3>
+                    <p>Enhance customer support with AI-driven automation that handles inquiries 24/7, reducing response times.</p>
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1516321497487-e288fb19713f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Education IT Automation">
+                    <h3>Education & IT AI Agents</h3>
+                    <p>Automate administrative tasks and provide personalized learning experiences with AI agents.</p>
+                </div>
+                <div class="image-card">
+                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Hospitality Automation">
+                    <h3>Hospitality Industry Use Case</h3>
+                    <p>Streamline bookings and guest interactions with AI solutions tailored for the hospitality sector.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p>"NeuroBotics transformed our customer service with their AI chatbot, saving us hours daily!"</p>
+                    <h4>Jane Doe, CEO of TechTrend</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The automation bots streamlined our workflows, boosting efficiency by 40%."</p>
+                    <h4>John Smith, COO of EduPlatform</h4>
+                </div>
+                <div class="testimonial-card">
+                    <p>"Their AI integration consulting was a game-changer for our ERP system."</p>
+                    <h4>Sarah Lee, CTO of Hospify</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Get in Touch</h2>
+            <form id="contactForm">
+                <input type="text" placeholder="Your Name" id="Name" required>
+                <input type="email" placeholder="Your Email" id="Email" required>
+                <textarea rows="5" placeholder="Tell us about your use case..." id="Message" required></textarea>
+                <button type="submit">Submit Inquiry</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>NeuroBotics AI</h4>
+                    <p>Empowering businesses with cutting-edge AI solutions for automation and growth.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#use-cases">Use Cases</a></li>
+                        <li><a href="#testimonials">Testimonials</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li><a href="mailto:info@neurobotics.ai">onemarg09@gmail.com</a></li>
+                        <li>malviya nagar , jaipur</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">LinkedIn</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 NeuroBotics AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="popup" id="booking-popup">
+        <button class="close-btn">×</button>
+        <h3>Book a Free Demo</h3>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea rows="4" placeholder="Tell us about your use case..." required></textarea>
+        <button class="cta-button">Submit</button>
+    </div>
+
+    <div class="chatbot-widget">💬</div>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? '🌞' : '🌙';
+        });
+
+        // Popup
+        const popup = document.getElementById('booking-popup');
+        const closeBtn = document.querySelector('.popup .close-btn');
+        setTimeout(() => popup.classList.add('active'), 3000);
+        closeBtn.addEventListener('click', () => {
+            popup.classList.remove('active');
+        });
+
+        // form submit
+        
+        // Contact Form Submission
+      document.getElementById('contactForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+debugger;
+    const formData = {
+      name: document.getElementById('Name').value.trim(),
+      email: document.getElementById('Email').value.trim(),
+      message: document.getElementById('Message').value.trim()
+    };
+debugger;
+    fetch("https://script.google.com/macros/s/AKfycbx2P0S3ahgrD8xOxYwNv-9-ONMb2c-LREDnzodsbMAfMaIazQRQaj2MQkJJYZwemPI_/exec", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.status === "success") {
+          alert("Thank you! We'll get in touch soon.");
+        } else {
+          alert("Failed to submit: " + data.message);
+        }
+      })
+      .catch(err => {
+        alert("Error submitting form. Try again later.");
+        console.error(err);
+      });
+  });
+
+
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        counters.forEach(counter => {
+            const updateCounter = () => {
+                const target = +counter.getAttribute('data-target');
+                const count = +counter.innerText;
+                const increment = target / 100;
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 20);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            };
+            updateCounter();
+        });
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from('.hero-content', { opacity: 0, y: 50, duration: 1, delay: 0.5 });
+        gsap.from('.hero-robot', { opacity: 0, x: 100, duration: 1, delay: 1 });
+        gsap.from('.ai-robot-header', { opacity: 0, y: -50, duration: 1, delay: 1.5 });
+        gsap.from('.stat-item', {
+            scrollTrigger: { trigger: '.stats', start: 'top 80%' },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8
+        });
+        gsap.from('.service-card', {
+            scrollTrigger: { trigger: '.services', start: 'top 80%' },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8
+        });
+        gsap.from('.image-card', {
+            scrollTrigger: { trigger: '.use-cases', start: 'top 80%' },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8
+        });
+        gsap.from('.testimonial-card', {
+            scrollTrigger: { trigger: '.testimonials', start: 'top 80%' },
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            duration: 0.8
+        });
+        gsap.from('.contact form', {
+            scrollTrigger: { trigger: '.contact', start: 'top 80%' },
+            opacity: 0,
+            y: 50,
+            duration: 0.8
+        });
+    </script>
+</body>
+</html>
