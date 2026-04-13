@@ -799,9 +799,6 @@
 
   fetch("https://script.google.com/macros/s/AKfycbx2P0S3ahgrD8xOxYwNv-9-ONMb2c-LREDnzodsbMAfMaIazQRQaj2MQkJJYZwemPI_/exec", {
     method: "POST",
-    headers: {
-      "Content-Type": "text/plain"   // 👈 KEY FIX
-    },
     body: JSON.stringify(formData)
   })
   .then(() => {
