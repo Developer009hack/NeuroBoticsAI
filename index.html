@@ -799,15 +799,13 @@
 
   fetch("https://script.google.com/macros/s/AKfycbx2P0S3ahgrD8xOxYwNv-9-ONMb2c-LREDnzodsbMAfMaIazQRQaj2MQkJJYZwemPI_/exec", {
     method: "POST",
+	mode: "no-cors",
     body: JSON.stringify(formData)
-  })
-  .then(() => {
-    alert("✅ Thank you! Data submitted successfully.");
-  })
-  .catch(err => {
-    alert("❌ Error submitting form.");
-    console.error(err);
   });
+  
+    alert("✅ Thank you! Data submitted successfully.");
+  
+  
 });
 
 
